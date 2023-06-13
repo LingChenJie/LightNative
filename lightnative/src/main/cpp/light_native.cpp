@@ -2,8 +2,8 @@
 #include <string>
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_android_lightnative_NativeLib_stringFromJNI(
-        JNIEnv* env,
+Java_com_android_lightnative_LightNativeLib_hello(
+        JNIEnv *env,
         jobject /* this */) {
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
