@@ -6,9 +6,15 @@
 
 #ifndef LIGHTNATIVE_COMMON_UTILS_H
 #define LIGHTNATIVE_COMMON_UTILS_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 jstring charToJstring(JNIEnv *env, const char *str);
 
 char *jstringToChar(JNIEnv *env, jstring jstr);
 
+#ifdef __cplusplus
+}
+#endif
 #endif //LIGHTNATIVE_COMMON_UTILS_H

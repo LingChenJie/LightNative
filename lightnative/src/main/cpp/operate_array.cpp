@@ -83,3 +83,51 @@ jobjectArray operateStringArray(
     }
     return outStringArray;
 }
+
+jobjectArray operateStudentArray(
+        JNIEnv *env,
+        jobject /* this */,
+        jobjectArray studentArray_in) {
+    // ---------------解析从Java Native得到的studentArray数组-----------
+    jclass class_student = env->FindClass("com/android/lightnative/bean/Student");
+    jfieldID fieldId_age = env->GetFieldID(class_student, "age", "I");
+    jfieldID fieldId_name = env->GetFieldID(class_student, "name", "Ljava/lang/String;");
+    const int length_in = env->GetArrayLength(studentArray_in);//获取数组长度
+
+    // 将数组分转换成结构体
+    jobject student_in;
+    Student students_in[length_in];
+    for (int i = 0; i < length_in; ++i) {
+        student_in = env->GetObjectArrayElement(studentArray_in, i);
+        students_in[i].age = env->GetIntField(student_in, fieldId_age);
+        students_in[i].name = jstringToChar(env,
+                                            (jstring) env->GetObjectField(student_in,
+                                                                          fieldId_name));
+        LOGE(TAG, "students_in[%d] age : %d\n", i, students_in[i].age);
+        LOGE(TAG, "students_in[%d] name : %s\n", i, students_in[i].name);
+    }
+
+    // ---------------创建自定义Class数组对象并返回-----------
+    const int length_out = 2;
+    Student students_out[length_out];
+    for (int i = 0; i < length_out; ++i) {
+        students_out[i].age = 10 + i;
+        students_out[i].name = (char *) malloc(sizeof(char) * 20);//长度为20
+        sprintf(students_out[i].name, "name : %d", i);
+    }
+
+    // 这里获得构造函数方法
+    jmethodID methodID_student_init = env->GetMethodID(class_student, "<init>", "()V");
+    // 将数据封装成对象然后再封装成数组
+    jobject student_out;
+    // 创建Student对象数组
+    jobjectArray studentArray_out = env->NewObjectArray(length_out, class_student, NULL);
+    for (int i = 0; i < length_out; ++i) {
+        student_out = env->NewObject(class_student, methodID_student_init);
+        env->SetIntField(student_out, fieldId_age, students_out[i].age);
+        env->SetObjectField(student_out, fieldId_name, charToJstring(env, students_out[i].name));
+        // 将对象插入到数组的特定位置
+        env->SetObjectArrayElement(studentArray_out, i, student_out);
+    }
+    return studentArray_out;
+}

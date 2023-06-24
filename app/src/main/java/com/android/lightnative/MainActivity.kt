@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.lightnative.bean.Student
 import com.android.lightnative.bean.TestBean
 import com.android.lightnative.databinding.ActivityMainBinding
 import com.android.lightnative.ext.click
@@ -43,6 +44,12 @@ class MainActivity : AppCompatActivity() {
             val inArray = arrayOf("Hello", "JNI")
             OperateArray().operateStringArray(inArray)?.forEach {
                 LogUtil.e(TAG, "operateStringArray:$it")
+            }
+        }
+        binding.operateStudentArray.click {
+            val inArray = arrayOf(Student(10, "zhangsan"), Student(20, "lisi"))
+            OperateArray().operateStudentArray(inArray)?.forEach {
+                LogUtil.e(TAG, "operateStudentArray:$it")
             }
         }
         binding.getJavaBeanFromC.click {

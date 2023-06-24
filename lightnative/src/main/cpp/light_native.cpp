@@ -70,18 +70,18 @@ static int registerOperateArray(JNIEnv *env) {
     const char *className = "com/android/lightnative/OperateArray";
     JNINativeMethod methods[] =
             {
-                    {"operateIntArray",    "([I)[I",
+                    {"operateIntArray",     "([I)[I",
                             (void *) operateIntArray},
-                    {"operateStringArray", "([Ljava/lang/String;)[Ljava/lang/String;",
+                    {"operateStringArray",  "([Ljava/lang/String;)[Ljava/lang/String;",
                             (void *) operateStringArray},
+                    {"operateStudentArray", "([Lcom/android/lightnative/bean/Student;)[Lcom/android/lightnative/bean/Student;",
+                            (void *) operateStudentArray},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
 // 动态注册
-JNIEXPORT jint
-
-JNICALL
+JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGE(TAG, "JNI_OnLoad\n");
     JNIEnv *env = NULL;
