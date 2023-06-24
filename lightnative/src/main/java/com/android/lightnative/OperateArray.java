@@ -15,4 +15,6 @@ public class OperateArray {
 
     public native Student[] operateStudentArray(Student[] array);
 
+    public native int[][] operateTwoIntArray(int[][] array);
+
 }

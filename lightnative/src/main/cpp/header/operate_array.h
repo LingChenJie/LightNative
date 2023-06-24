@@ -31,6 +31,11 @@ jobjectArray operateStudentArray(
         jobject /* this */,
         jobjectArray studentArray_in);
 
+jobjectArray operateTwoIntArray(
+        JNIEnv *env,
+        jobject /* this */,
+        jobjectArray objectArray_in);
+
 #ifdef __cplusplus
 }
 #endif

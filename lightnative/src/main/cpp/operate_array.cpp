@@ -131,3 +131,53 @@ jobjectArray operateStudentArray(
     }
     return studentArray_out;
 }
+
+jobjectArray operateTwoIntArray(
+        JNIEnv *env,
+        jobject /* this */,
+        jobjectArray objectArray_in) {
+    // ---------------解析从Java Native得到的int型二维数组-----------
+    const int row = env->GetArrayLength(objectArray_in);// 获取二维数组的行数
+    jarray array = (jarray) env->GetObjectArrayElement(objectArray_in, 0);
+    const int col = env->GetArrayLength(array);//获取二维数组每行的列数
+
+    // 根据行数和列数创建int型二维数组
+    jint intDimArray_in[row][col];
+    for (int i = 0; i < row; ++i) {
+        array = (jintArray) env->GetObjectArrayElement(objectArray_in, i);
+        // 操作方式1，这种方式会申请native memory内存
+        jint *coldata = env->GetIntArrayElements((jintArray) array, NULL);
+        for (int j = 0; j < col; ++j) {
+            intDimArray_in[i][j] = coldata[j];// 取出JAVA类中int二维数组的数据,并赋值给JNI中的数组
+        }
+
+        // 操作方式2，赋值，这种方式不会申请内存
+        env->GetIntArrayRegion((jintArray) array, 0, col, (jint *) &intDimArray_in[i]);
+
+        env->ReleaseIntArrayElements((jintArray) array, coldata, 0);
+    }
+
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            LOGE(TAG, "The intDimArray_in[%d][%d] is %d\n", i, j, intDimArray_in[i][j]);
+        }
+    }
+
+    // ---------------创建一个int型二维数组返回给Java-----------
+    const int row_out = 2;// 行数
+    const int col_out = 2;// 列数
+
+    // 获取数组的class
+    jclass class_int_array = env->FindClass("[I");// 一维数组的类
+    // 新建object数组，里面是int[]
+    jobjectArray intDimArray_out = env->NewObjectArray(row_out, class_int_array, NULL);
+
+    int temp_array[row_out][col_out] = {{0, 1},
+                                        {2, 3}};
+    for (int i = 0; i < row_out; ++i) {
+        jintArray intArray = env->NewIntArray(col_out);
+        env->SetIntArrayRegion(intArray, 0, col_out, (jint *) &temp_array[i]);
+        env->SetObjectArrayElement(intDimArray_out, i, intArray);
+    }
+    return intDimArray_out;
+}

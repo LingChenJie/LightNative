@@ -76,6 +76,8 @@ static int registerOperateArray(JNIEnv *env) {
                             (void *) operateStringArray},
                     {"operateStudentArray", "([Lcom/android/lightnative/bean/Student;)[Lcom/android/lightnative/bean/Student;",
                             (void *) operateStudentArray},
+                    {"operateTwoIntArray",  "([[I)[[I",
+                            (void *) operateTwoIntArray},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
