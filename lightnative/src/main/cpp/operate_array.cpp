@@ -15,6 +15,7 @@ jintArray operateIntArray(
         JNIEnv *env,
         jobject /* this */,
         jintArray inIntArray) {
+    LOGE(TAG, "operateIntArray()\n");
     // ---------------解析从Java Native得到的jintArray数组-----------
     jint *pJint;
     // 操作方式1
@@ -53,4 +54,32 @@ jintArray operateIntArray(
     // 使用SetIntArrayRegion赋值
     env->SetIntArrayRegion(outIntArray, 0, out_length, buff_out);
     return outIntArray;
+}
+
+jobjectArray operateStringArray(
+        JNIEnv *env,
+        jobject /* this */,
+        jobjectArray stringArray_in) {
+    LOGE(TAG, "operateStringArray()\n");
+    // ---------------解析从Java Native得到的stringArray数组-----------
+    jsize length = env->GetArrayLength(stringArray_in);
+    for (int i = 0; i < length; ++i) {
+        jstring string_in = (jstring) env->GetObjectArrayElement(stringArray_in, i);
+        char *char_in = jstringToChar(env, string_in);
+        LOGE(TAG, "stringArray_in[%d] : %s\n", i, char_in);
+    }
+
+    // ---------------从JNI返回String数组给Java层-----------
+    jclass class_string = env->FindClass("java/lang/String");
+    jobjectArray outStringArray;
+    const int out_length = 5;
+    outStringArray = env->NewObjectArray(out_length, class_string, NULL);
+    char *char_out[] = {"Hello", "world", "JNI", "is", "run."};
+
+    jstring temp_string;
+    for (int i = 0; i < out_length; ++i) {
+        temp_string = charToJstring(env, char_out[i]);
+        env->SetObjectArrayElement(outStringArray, i, temp_string);
+    }
+    return outStringArray;
 }

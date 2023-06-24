@@ -64,20 +64,24 @@ static int registerOperateString(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
-// 注册OperateArrAY的方法
+// 注册OperateArray的方法
 static int registerOperateArray(JNIEnv *env) {
     // 指定类的路径，通过FindClass方法来找到对应的类
     const char *className = "com/android/lightnative/OperateArray";
     JNINativeMethod methods[] =
             {
-                    {"operateIntArray", "([I)[I",
-                     (void *) operateIntArray},
+                    {"operateIntArray",    "([I)[I",
+                            (void *) operateIntArray},
+                    {"operateStringArray", "([Ljava/lang/String;)[Ljava/lang/String;",
+                            (void *) operateStringArray},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
 // 动态注册
-JNIEXPORT jint JNICALL
+JNIEXPORT jint
+
+JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGE(TAG, "JNI_OnLoad\n");
     JNIEnv *env = NULL;

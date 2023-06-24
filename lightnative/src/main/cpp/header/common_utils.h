@@ -7,6 +7,8 @@
 #ifndef LIGHTNATIVE_COMMON_UTILS_H
 #define LIGHTNATIVE_COMMON_UTILS_H
 
-jstring charToJstring(JNIEnv *env, const char *pat);
+jstring charToJstring(JNIEnv *env, const char *str);
+
+char *jstringToChar(JNIEnv *env, jstring jstr);
 
 #endif //LIGHTNATIVE_COMMON_UTILS_H

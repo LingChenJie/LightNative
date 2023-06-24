@@ -12,4 +12,9 @@ jintArray operateIntArray(
         jobject /* this */,
         jintArray intArray_in);
 
+jobjectArray operateStringArray(
+        JNIEnv *env,
+        jobject /* this */,
+        jobjectArray stringArray_in);
+
 #endif //LIGHTNATIVE_OPERATE_ARRAY_H

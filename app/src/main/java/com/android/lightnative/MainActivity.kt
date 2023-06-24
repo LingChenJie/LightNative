@@ -39,6 +39,12 @@ class MainActivity : AppCompatActivity() {
                 LogUtil.e(TAG, "operateIntArray:$it")
             }
         }
+        binding.operateStringArray.click {
+            val inArray = arrayOf("Hello", "JNI")
+            OperateArray().operateStringArray(inArray)?.forEach {
+                LogUtil.e(TAG, "operateStringArray:$it")
+            }
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())
