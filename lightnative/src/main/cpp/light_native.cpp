@@ -1,8 +1,10 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include "header/operate_string.h"
+#include "header/operate_array.h"
 
-#define TAG "LIGHT_NATIVE_TAG"
+#define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
 
 
@@ -51,6 +53,29 @@ static int registerLightNativeLib(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
+// 注册OperateString的方法
+static int registerOperateString(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateString";
+    JNINativeMethod methods[] =
+            {
+                    {"helloJni", "(Ljava/lang/String;)Ljava/lang/String;", (void *) helloJni},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
+// 注册OperateArrAY的方法
+static int registerOperateArray(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateArray";
+    JNINativeMethod methods[] =
+            {
+                    {"operateIntArray", "([I)[I",
+                     (void *) operateIntArray},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
 // 动态注册
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
@@ -62,6 +87,12 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
     }
     // 注册函数
     if (!registerLightNativeLib(env)) {
+        return -1;
+    }
+    if (!registerOperateString(env)) {
+        return -1;
+    }
+    if (!registerOperateArray(env)) {
         return -1;
     }
     return JNI_VERSION_1_6;

@@ -22,6 +22,9 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         light_native.cpp
+        common_utils.cpp
+        operate_string.cpp
+        operate_array.cpp
         test.cpp
         )
 
