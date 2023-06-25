@@ -65,6 +65,11 @@ class MainActivity : AppCompatActivity() {
             OperateFiled().accessFiled(inArray)
             LogUtil.e(TAG, "accessFiled:$inArray")
         }
+        binding.accessStaticFiled.click {
+            OperateFiled().accessStaticFiled()
+            LogUtil.e(TAG, "accessStaticFiled Student.staticId::${Student.staticId}")
+            LogUtil.e(TAG, "accessStaticFiled Student.staticString::${Student.staticString}")
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())

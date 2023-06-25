@@ -10,4 +10,6 @@ public class OperateFiled {
 
     public native void accessFiled(Student student);
 
+    public native void accessStaticFiled();
+
 }

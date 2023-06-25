@@ -90,7 +90,9 @@ static int registerOperateField(JNIEnv *env) {
     JNINativeMethod methods[] =
             {
                     {"accessFiled", "(Lcom/android/lightnative/bean/Student;)V",
-                            (void *) accessFiled},
+                     (void *) accessFiled},
+                    {"accessStaticFiled", "()V",
+                     (void *) accessStaticFiled},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }

@@ -5,6 +5,9 @@ package com.android.lightnative.bean;
  * Describe:
  */
 public class Student {
+    public static int staticId = 0;
+    public static String staticString = "Student";
+
     private int age;
     private String name;
 
@@ -31,6 +34,7 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
+
 
     @Override
     public String toString() {

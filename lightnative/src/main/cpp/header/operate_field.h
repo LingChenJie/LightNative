@@ -15,6 +15,10 @@ void accessFiled(
         jobject /* this */,
         jobject student_in);
 
+void accessStaticFiled(
+        JNIEnv *env,
+        jobject /* this */);
+
 #ifdef __cplusplus
 }
 #endif
