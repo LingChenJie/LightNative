@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.accessFiled.click {
+            val inArray = Student(12, "zhangsan")
+            OperateFiled().accessFiled(inArray)
+            LogUtil.e(TAG, "accessFiled:$inArray")
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())

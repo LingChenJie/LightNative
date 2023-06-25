@@ -57,6 +57,14 @@
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/accessFiled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="accessFiled"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/getJavaBeanFromC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
