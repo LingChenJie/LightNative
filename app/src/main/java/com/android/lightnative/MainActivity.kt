@@ -78,6 +78,13 @@ class MainActivity : AppCompatActivity() {
             OperateMethod().callStaticMethod()
             LogUtil.e(TAG, "callStaticMethod Student.staticString::${Student.staticString}")
         }
+        binding.throwException.click {
+            try {
+                OperateException().throwException()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())

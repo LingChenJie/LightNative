@@ -5,6 +5,7 @@
 #include "header/operate_array.h"
 #include "header/operate_field.h"
 #include "header/operate_method.h"
+#include "header/operate_exception.h"
 
 #define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -112,6 +113,18 @@ static int registerOperateMethod(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
+// 注册OperateException的方法
+static int registerOperateException(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateException";
+    JNINativeMethod methods[] =
+            {
+                    {"throwException", "()V",
+                     (void *) throwException},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
 // 动态注册
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
@@ -126,7 +139,8 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
         !registerOperateString(env) ||
         !registerOperateArray(env) ||
         !registerOperateField(env) ||
-        !registerOperateMethod(env)) {
+        !registerOperateMethod(env) ||
+        !registerOperateException(env)) {
         return -1;
     }
     return JNI_VERSION_1_6;
