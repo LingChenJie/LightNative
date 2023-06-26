@@ -12,4 +12,6 @@ public class OperateMethod {
 
     public native void callStaticMethod();
 
+    public native void callSuperMethod();
+
 }

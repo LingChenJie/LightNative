@@ -110,6 +110,8 @@ static int registerOperateMethod(JNIEnv *env) {
                             (void *) callMethod},
                     {"callStaticMethod", "()V",
                             (void *) callStaticMethod},
+                    {"callSuperMethod",  "()V",
+                            (void *) callSuperMethod},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }

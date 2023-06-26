@@ -18,6 +18,10 @@ void callStaticMethod(
         JNIEnv *env,
         jobject /* this */);
 
+void callSuperMethod(
+        JNIEnv *env,
+        jobject /* this */);
+
 #ifdef __cplusplus
 }
 #endif

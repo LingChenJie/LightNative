@@ -78,6 +78,9 @@ class MainActivity : AppCompatActivity() {
             OperateMethod().callStaticMethod()
             LogUtil.e(TAG, "callStaticMethod Student.staticString::${Student.staticString}")
         }
+        binding.callSuperMethod.click {
+            OperateMethod().callSuperMethod()
+        }
         binding.throwException.click {
             try {
                 OperateException().throwException2()
