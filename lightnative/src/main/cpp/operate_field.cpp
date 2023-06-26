@@ -3,7 +3,6 @@
 //
 #include <jni.h>
 #include <string>
-#include <cstdio>
 #include <android/log.h>
 #include "header/operate_field.h"
 #include "header/common_utils.h"

@@ -121,6 +121,8 @@ static int registerOperateException(JNIEnv *env) {
             {
                     {"throwException", "()V",
                      (void *) throwException},
+                    {"throwException2", "()V",
+                     (void *) throwException2},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }

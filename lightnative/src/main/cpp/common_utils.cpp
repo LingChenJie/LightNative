@@ -2,7 +2,6 @@
 // Created by SuQi on 2023/6/24.
 //
 #include <string>
-#include <cstdio>
 #include <android/log.h>
 #include "header/common_utils.h"
 

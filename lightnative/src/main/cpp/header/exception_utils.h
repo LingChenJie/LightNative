@@ -10,6 +10,8 @@
 extern "C" {
 #endif
 
+int checkException(JNIEnv *env);
+
 void throwExceptionByName(JNIEnv *env, const char *exception_name, const char *msg);
 
 #ifdef __cplusplus

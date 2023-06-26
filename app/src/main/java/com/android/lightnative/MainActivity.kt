@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.throwException.click {
             try {
-                OperateException().throwException()
+                OperateException().throwException2()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

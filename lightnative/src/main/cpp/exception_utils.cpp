@@ -2,12 +2,23 @@
 // Created by SuQi on 2023/6/24.
 //
 #include <string>
-#include <cstdio>
 #include <android/log.h>
 #include "header/exception_utils.h"
 
 #define TAG "EXCEPTION_UTILS_TAG"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
+
+/**
+ * 检查异常
+ * @param env
+ */
+int checkException(JNIEnv *env) {
+    if (env->ExceptionCheck()) {
+        env->ExceptionDescribe();// 打印异常信息
+        env->ExceptionClear();// 清除异常信息
+    }
+    return -1;
+}
 
 /**
  * 向Java层抛出异常

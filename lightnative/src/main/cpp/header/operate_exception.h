@@ -14,6 +14,10 @@ void throwException(
         JNIEnv *env,
         jobject /* this */);
 
+void throwException2(
+        JNIEnv *env,
+        jobject /* this */);
+
 #ifdef __cplusplus
 }
 #endif
