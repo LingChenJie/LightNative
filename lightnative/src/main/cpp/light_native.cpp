@@ -4,6 +4,7 @@
 #include "header/operate_string.h"
 #include "header/operate_array.h"
 #include "header/operate_field.h"
+#include "header/operate_method.h"
 
 #define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -89,10 +90,24 @@ static int registerOperateField(JNIEnv *env) {
     const char *className = "com/android/lightnative/OperateFiled";
     JNINativeMethod methods[] =
             {
-                    {"accessFiled", "(Lcom/android/lightnative/bean/Student;)V",
-                     (void *) accessFiled},
+                    {"accessFiled",       "(Lcom/android/lightnative/bean/Student;)V",
+                            (void *) accessFiled},
                     {"accessStaticFiled", "()V",
-                     (void *) accessStaticFiled},
+                            (void *) accessStaticFiled},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
+// 注册OperateMethod的方法
+static int registerOperateMethod(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateMethod";
+    JNINativeMethod methods[] =
+            {
+                    {"callMethod",       "()Lcom/android/lightnative/bean/Student;",
+                            (void *) callMethod},
+                    {"callStaticMethod", "()V",
+                            (void *) callStaticMethod},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
@@ -110,7 +125,8 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
     if (!registerLightNativeLib(env) ||
         !registerOperateString(env) ||
         !registerOperateArray(env) ||
-        !registerOperateField(env)) {
+        !registerOperateField(env) ||
+        !registerOperateMethod(env)) {
         return -1;
     }
     return JNI_VERSION_1_6;

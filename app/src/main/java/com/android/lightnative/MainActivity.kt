@@ -70,6 +70,14 @@ class MainActivity : AppCompatActivity() {
             LogUtil.e(TAG, "accessStaticFiled Student.staticId::${Student.staticId}")
             LogUtil.e(TAG, "accessStaticFiled Student.staticString::${Student.staticString}")
         }
+        binding.callMethod.click {
+            val student = OperateMethod().callMethod()
+            LogUtil.e(TAG, "callMethod:$student")
+        }
+        binding.callStaticMethod.click {
+            OperateMethod().callStaticMethod()
+            LogUtil.e(TAG, "callStaticMethod Student.staticString::${Student.staticString}")
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())

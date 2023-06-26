@@ -19,6 +19,10 @@ public class Student {
         this.name = name;
     }
 
+    public static void setStaticString(String string) {
+        staticString = string;
+    }
+
     public int getAge() {
         return age;
     }

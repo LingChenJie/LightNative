@@ -1,91 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="Hello World!" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <Button
-        android:id="@+id/helloJni"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="helloJni"
-        android:textAllCaps="false" />
+        <TextView
+            android:id="@+id/sample_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Hello World!" />
 
-    <Button
-        android:id="@+id/operateIntArray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="operateIntArray"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/helloJni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="helloJni"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/operateStringArray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="operateStringArray"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/operateIntArray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="operateIntArray"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/operateStudentArray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="operateStudentArray"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/operateStringArray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="operateStringArray"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/operateTwoIntArray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="operateTwoIntArray"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/operateStudentArray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="operateStudentArray"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/accessFiled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="accessFiled"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/operateTwoIntArray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="operateTwoIntArray"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/accessStaticFiled"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="accessStaticFiled"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/accessFiled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="accessFiled"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/getJavaBeanFromC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="getJavaBeanFromC"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/accessStaticFiled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="accessStaticFiled"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/javaBeanToStruct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="javaBeanToStruct"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/callMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="callMethod"
+            android:textAllCaps="false" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <Button
+            android:id="@+id/callStaticMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="callStaticMethod"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/getJavaBeanFromC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="getJavaBeanFromC"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/javaBeanToStruct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="javaBeanToStruct"
+            android:textAllCaps="false" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>

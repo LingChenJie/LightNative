@@ -26,6 +26,7 @@ add_library( # Sets the name of the library.
         operate_string.cpp
         operate_array.cpp
         operate_field.cpp
+        operate_method.cpp
         test.cpp
         )
 
