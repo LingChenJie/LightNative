@@ -85,6 +85,9 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+        binding.threadWork.click {
+            OperateThread().threadWork()
+        }
         binding.getJavaBeanFromC.click {
             val bean = lightNativeLib.javaBeanFromNative
             LogUtil.d(TAG, bean.toString())

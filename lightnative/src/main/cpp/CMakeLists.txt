@@ -29,6 +29,7 @@ add_library( # Sets the name of the library.
         operate_field.cpp
         operate_method.cpp
         operate_exception.cpp
+        operate_thread.cpp
         test.cpp
         )
 

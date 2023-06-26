@@ -6,6 +6,7 @@
 #include "header/operate_field.h"
 #include "header/operate_method.h"
 #include "header/operate_exception.h"
+#include "header/operate_thread.h"
 
 #define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -119,10 +120,22 @@ static int registerOperateException(JNIEnv *env) {
     const char *className = "com/android/lightnative/OperateException";
     JNINativeMethod methods[] =
             {
-                    {"throwException", "()V",
-                     (void *) throwException},
+                    {"throwException",  "()V",
+                            (void *) throwException},
                     {"throwException2", "()V",
-                     (void *) throwException2},
+                            (void *) throwException2},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
+// 注册OperateThread的方法
+static int registerOperateThread(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateThread";
+    JNINativeMethod methods[] =
+            {
+                    {"threadWork", "()V",
+                     (void *) threadWork},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
@@ -142,7 +155,8 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
         !registerOperateArray(env) ||
         !registerOperateField(env) ||
         !registerOperateMethod(env) ||
-        !registerOperateException(env)) {
+        !registerOperateException(env) ||
+        !registerOperateThread(env)) {
         return -1;
     }
     return JNI_VERSION_1_6;

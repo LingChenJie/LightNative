@@ -101,6 +101,14 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/threadWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="threadWork"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/getJavaBeanFromC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
