@@ -30,7 +30,7 @@ add_library( # Sets the name of the library.
         operate_method.cpp
         operate_exception.cpp
         operate_thread.cpp
-        test.cpp
+        operate_transfer.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a

@@ -4,8 +4,8 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.lightnative.bean.JavaBean
 import com.android.lightnative.bean.Student
-import com.android.lightnative.bean.TestBean
 import com.android.lightnative.databinding.ActivityMainBinding
 import com.android.lightnative.ext.click
 import com.android.lightnative.utils.LogUtil
@@ -92,12 +92,12 @@ class MainActivity : AppCompatActivity() {
             OperateThread().threadWork()
         }
         binding.getJavaBeanFromC.click {
-            val bean = lightNativeLib.javaBeanFromNative
-            LogUtil.d(TAG, bean.toString())
+            val javaBean = OperateTransfer().javaBean
+            LogUtil.d(TAG, javaBean.toString())
         }
         binding.javaBeanToStruct.click {
-            val testBean = TestBean()
-            lightNativeLib.transferJavaBeanToNative(testBean)
+            val javaBean = JavaBean()
+            OperateTransfer().transferJavaBean(javaBean)
         }
     }
 

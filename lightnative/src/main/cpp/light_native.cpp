@@ -7,6 +7,7 @@
 #include "header/operate_method.h"
 #include "header/operate_exception.h"
 #include "header/operate_thread.h"
+#include "header/operate_transfer.h"
 
 #define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -142,6 +143,20 @@ static int registerOperateThread(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
+// 注册OperateTransfer的方法
+static int registerOperateTransfer(JNIEnv *env) {
+    // 指定类的路径，通过FindClass方法来找到对应的类
+    const char *className = "com/android/lightnative/OperateTransfer";
+    JNINativeMethod methods[] =
+            {
+                    {"getJavaBean", "()Lcom/android/lightnative/bean/JavaBean;",
+                     (void *) getJavaBean},
+                    {"transferJavaBean", "(Lcom/android/lightnative/bean/JavaBean;)V",
+                     (void *) transferJavaBean},
+            };
+    return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
+}
+
 // 动态注册
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
@@ -158,7 +173,8 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
         !registerOperateField(env) ||
         !registerOperateMethod(env) ||
         !registerOperateException(env) ||
-        !registerOperateThread(env)) {
+        !registerOperateThread(env) ||
+        !registerOperateTransfer(env)) {
         return -1;
     }
     return JNI_VERSION_1_6;
