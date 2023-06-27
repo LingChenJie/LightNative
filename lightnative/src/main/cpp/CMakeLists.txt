@@ -22,15 +22,15 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         light_native.cpp
-        common_utils.cpp
-        exception_utils.cpp
-        operate_string.cpp
-        operate_array.cpp
-        operate_field.cpp
-        operate_method.cpp
-        operate_exception.cpp
-        operate_thread.cpp
-        operate_transfer.cpp
+        utils/common_utils.cpp
+        utils/exception_utils.cpp
+        basic/operate_string.cpp
+        basic/operate_array.cpp
+        basic/operate_field.cpp
+        basic/operate_method.cpp
+        basic/operate_exception.cpp
+        basic/operate_thread.cpp
+        basic/operate_transfer.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a

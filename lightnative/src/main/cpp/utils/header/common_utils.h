@@ -1,8 +1,8 @@
 //
 // Created by 小苏苏苏 on 2023/6/24.
 //
-#include <jni.h>
-#include <string>
+#include "../../../../../../../../../Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/jni.h"
+#include "../../../../../../../../../Library/Android/sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/string"
 
 #ifndef LIGHTNATIVE_COMMON_UTILS_H
 #define LIGHTNATIVE_COMMON_UTILS_H

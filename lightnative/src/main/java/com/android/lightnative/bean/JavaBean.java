@@ -12,7 +12,7 @@ public class JavaBean {
     public char charValue = 'A'; // char类型
     public double doubleValue = 100; // double类型
     public int intValue = 100; // 整形
-    public byte[] arrayValue = {0, 1, 2, 3}; // byte数组
+    public byte[] byteArray = {0, 1, 2, 3}; // byte数组
 
     public int[][] doubleDimenArray = {
             {10, 10},
@@ -38,7 +38,7 @@ public class JavaBean {
                 ", charValue=" + charValue +
                 ", doubleValue=" + doubleValue +
                 ", intValue=" + intValue +
-                ", arrayValue=" + Arrays.toString(arrayValue) +
+                ", byteArray=" + Arrays.toString(byteArray) +
                 ", doubleDimenArray=" + Arrays.toString(doubleDimenArray) +
                 ", innerClass=" + innerClass.toString() +
                 '}';

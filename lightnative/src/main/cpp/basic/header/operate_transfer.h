@@ -18,7 +18,7 @@ typedef struct {
     char charValue;// char
     double doubleValue;// double
     int intValue;// int
-    char arrayValue[4];// byte[]
+    char byteArray[4];// byte[]
     int doubleDimenArray[2][2];// int[][]
     const char *message;// String
 } JavaBean;
@@ -43,6 +43,8 @@ typedef struct {
     jfieldID doubleDimenArray;
     jfieldID innerClass;
 } JavaBean_t;
+
+void register_class(JNIEnv *env);
 
 jobject getJavaBean(
         JNIEnv *env,

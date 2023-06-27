@@ -1,13 +1,13 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
-#include "header/operate_string.h"
-#include "header/operate_array.h"
-#include "header/operate_field.h"
-#include "header/operate_method.h"
-#include "header/operate_exception.h"
-#include "header/operate_thread.h"
-#include "header/operate_transfer.h"
+#include "basic/header/operate_string.h"
+#include "basic/header/operate_array.h"
+#include "basic/header/operate_field.h"
+#include "basic/header/operate_method.h"
+#include "basic/header/operate_exception.h"
+#include "basic/header/operate_thread.h"
+#include "basic/header/operate_transfer.h"
 
 #define TAG "TAG_LIGHT_NATIVE"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -145,14 +145,16 @@ static int registerOperateThread(JNIEnv *env) {
 
 // 注册OperateTransfer的方法
 static int registerOperateTransfer(JNIEnv *env) {
+    // 注册类
+    register_class(env);
     // 指定类的路径，通过FindClass方法来找到对应的类
     const char *className = "com/android/lightnative/OperateTransfer";
     JNINativeMethod methods[] =
             {
-                    {"getJavaBean", "()Lcom/android/lightnative/bean/JavaBean;",
-                     (void *) getJavaBean},
+                    {"getJavaBean",      "()Lcom/android/lightnative/bean/JavaBean;",
+                            (void *) getJavaBean},
                     {"transferJavaBean", "(Lcom/android/lightnative/bean/JavaBean;)V",
-                     (void *) transferJavaBean},
+                            (void *) transferJavaBean},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }

@@ -5,7 +5,7 @@
 #include <string>
 #include <android/log.h>
 #include "header/operate_array.h"
-#include "header/common_utils.h"
+#include "../utils/header/common_utils.h"
 
 #define TAG "TAG_OPERATE_ARRAY"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)

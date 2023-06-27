@@ -5,8 +5,8 @@
 #include <string>
 #include <android/log.h>
 #include "header/operate_exception.h"
-#include "header/common_utils.h"
-#include "header/exception_utils.h"
+#include "../utils/header/common_utils.h"
+#include "../utils/header/exception_utils.h"
 
 #define TAG "TAG_OPERATE_EXCEPTION"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
