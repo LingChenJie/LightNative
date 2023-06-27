@@ -4,8 +4,8 @@
 #include <jni.h>
 #include <string>
 
-#ifndef LIGHTNATIVE_TRNASFER_H
-#define LIGHTNATIVE_TRNASFER_H
+#ifndef LIGHTNATIVE_OPERATE_TRNASFER_H
+#define LIGHTNATIVE_OPERATE_TRNASFER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -58,4 +58,4 @@ void transferJavaBean(
 #ifdef __cplusplus
 }
 #endif
-#endif //LIGHTNATIVE_TRNASFER_H
+#endif //LIGHTNATIVE_OPERATE_TRNASFER_H
