@@ -63,3 +63,39 @@ char *jstringToChar(JNIEnv *env, jstring jstr) {
     env->DeleteLocalRef(byteArray);
     return (char *) result;
 }
+
+/**
+ * 获取指定的class
+ * @param env
+ * @param className
+ * @param classOut
+ * @return
+ */
+int findClass(JNIEnv *env, const char *className, jclass *classOut) {
+    jclass clazz = env->FindClass(className);
+    if (clazz == NULL) {
+        LOGE(TAG, "FindClass failed for class %s\n", className);
+        return -1;
+    }
+    *classOut = (jclass) env->NewGlobalRef(clazz);// 这里必须新建一个全局的引用
+    return 0;
+}
+
+/**
+ * 获取指定的fieldID
+ * @param env
+ * @param clazz
+ * @param name
+ * @param sig
+ * @param filedIdOut
+ * @return
+ */
+int getFiledID(JNIEnv *env, jclass clazz, const char *name, const char *sig, jfieldID *filedIdOut) {
+    jfieldID fieldID = env->GetFieldID(clazz, name, sig);
+    if (fieldID == NULL) {
+        LOGE(TAG, "GetFieldID failed for name: %s, sig: %s", name, sig);
+        return -1;
+    }
+    *filedIdOut = fieldID;
+    return 0;
+}

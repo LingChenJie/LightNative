@@ -14,6 +14,10 @@ jstring charToJstring(JNIEnv *env, const char *str);
 
 char *jstringToChar(JNIEnv *env, jstring jstr);
 
+int findClass(JNIEnv *env, const char *className, jclass *classOut);
+
+int getFiledID(JNIEnv *env, jclass clazz, const char *name, const char *sig, jfieldID *filedIdOut);
+
 #ifdef __cplusplus
 }
 #endif

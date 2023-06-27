@@ -36,57 +36,36 @@ static int dump_JavaBean_Info(JavaBean *javaBean) {
     return 0;
 }
 
-static int find_class(JNIEnv *env, const char *className, jclass *classOut) {
-    jclass clazz = env->FindClass(className);
-    if (clazz == NULL) {
-        LOGE(TAG, "FindClass failed for class %s\n", className);
-        return -1;
-    }
-    *classOut = (jclass) env->NewGlobalRef(clazz);// 这里必须新建一个全局的引用
-    return 0;
-}
-
-static int
-get_filed(JNIEnv *env, jclass clazz, const char *name, const char *sig, jfieldID *filedIdOut) {
-    jfieldID fieldID = env->GetFieldID(clazz, name, sig);
-    if (fieldID == NULL) {
-        LOGE(TAG, "GetFieldID failed for name: %s, sig: %s", name, sig);
-        return -1;
-    }
-    *filedIdOut = fieldID;
-    return 0;
-}
-
 static void register_inner_class(JNIEnv *env) {
-    int ret = find_class(env, "com/android/lightnative/bean/JavaBean$InnerClass",
-                         &innerClass_t.clazz);
+    int ret = findClass(env, "com/android/lightnative/bean/JavaBean$InnerClass",
+                        &innerClass_t.clazz);
     if (ret != 0) {
         LOGE(TAG, "register_inner_class failed\n");
         return;
     }
     jclass class_inner = innerClass_t.clazz;
     innerClass_t.constructor = env->GetMethodID(class_inner, "<init>", "()V");
-    get_filed(env, class_inner, "message", "Ljava/lang/String;", &innerClass_t.message);
+    getFiledID(env, class_inner, "message", "Ljava/lang/String;", &innerClass_t.message);
 }
 
 static void register_javaBean_class(JNIEnv *env) {
-    int ret = find_class(env, "com/android/lightnative/bean/JavaBean",
-                         &javaBean_t.clazz);
+    int ret = findClass(env, "com/android/lightnative/bean/JavaBean",
+                        &javaBean_t.clazz);
     if (ret != 0) {
         LOGE(TAG, "register_javaBean_class failed\n");
         return;
     }
     jclass class_javaBean = javaBean_t.clazz;
     javaBean_t.constructor = env->GetMethodID(class_javaBean, "<init>", "()V");
-    get_filed(env, class_javaBean, "stringValue", "Ljava/lang/String;", &javaBean_t.stringValue);
-    get_filed(env, class_javaBean, "boolValue", "Z", &javaBean_t.boolValue);
-    get_filed(env, class_javaBean, "charValue", "C", &javaBean_t.charValue);
-    get_filed(env, class_javaBean, "doubleValue", "D", &javaBean_t.doubleValue);
-    get_filed(env, class_javaBean, "intValue", "I", &javaBean_t.intValue);
-    get_filed(env, class_javaBean, "byteArray", "[B", &javaBean_t.byteArray);
-    get_filed(env, class_javaBean, "doubleDimenArray", "[[I", &javaBean_t.doubleDimenArray);
-    get_filed(env, class_javaBean, "innerClass",
-              "Lcom/android/lightnative/bean/JavaBean$InnerClass;", &javaBean_t.innerClass);
+    getFiledID(env, class_javaBean, "stringValue", "Ljava/lang/String;", &javaBean_t.stringValue);
+    getFiledID(env, class_javaBean, "boolValue", "Z", &javaBean_t.boolValue);
+    getFiledID(env, class_javaBean, "charValue", "C", &javaBean_t.charValue);
+    getFiledID(env, class_javaBean, "doubleValue", "D", &javaBean_t.doubleValue);
+    getFiledID(env, class_javaBean, "intValue", "I", &javaBean_t.intValue);
+    getFiledID(env, class_javaBean, "byteArray", "[B", &javaBean_t.byteArray);
+    getFiledID(env, class_javaBean, "doubleDimenArray", "[[I", &javaBean_t.doubleDimenArray);
+    getFiledID(env, class_javaBean, "innerClass",
+               "Lcom/android/lightnative/bean/JavaBean$InnerClass;", &javaBean_t.innerClass);
 }
 
 void register_class(JNIEnv *env) {
