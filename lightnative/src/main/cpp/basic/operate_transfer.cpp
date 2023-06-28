@@ -14,6 +14,28 @@
 static JavaBean_t javaBean_t;
 static InnerClass_t innerClass_t;
 
+static int dump_ClassA_Info(ClassA *classA) {
+    LOGE(TAG, "--------------dump_ClassA_Info start------------------\n");
+    int length = ARRAY_LEN(classA->mByteArray);
+    for (int i = 0; i < length; ++i) {
+        LOGE(TAG, "mByteArray[%d]: %d\n", i, classA->mByteArray[i]);
+    }
+    LOGE(TAG, "mShort: %d\n", classA->mShort);
+    LOGE(TAG, "mByte: %d\n", classA->mByte);
+    LOGE(TAG, "--------------dump_ClassA_Info end------------------\n");
+    return 0;
+}
+
+static int setClassA_Info(ClassA *classA) {
+    int length = ARRAY_LEN(classA->mByteArray);
+    for (int i = 0; i < length; ++i) {
+        classA->mByteArray[i] = i * 20;
+    }
+    classA->mShort = 9;
+    classA->mByte = 8;
+    return 0;
+}
+
 static int dump_JavaBean_Info(JavaBean *javaBean) {
     LOGE(TAG, "--------------dump_JavaBean_Info start------------------\n");
     LOGE(TAG, "stringValue: %s\n", javaBean->stringValue);
@@ -203,4 +225,30 @@ void transferJavaBean(
     JavaBean javaBean;
     javaBean_javaToC(env, javaBean_in, &javaBean);
     dump_JavaBean_Info(&javaBean);
+}
+
+jint getClassA(
+        JNIEnv *env,
+        jobject /* this */,
+        jbyteArray byteArray_in) {
+    union {
+        int n;
+        char ch;
+    } data{};
+    data.n = 1;
+    if (data.n == 1) {
+        LOGE(TAG, "Little-endian\n");
+    } else {
+        LOGE(TAG, "Big-endian\n");
+    }
+    if (byteArray_in == NULL) {
+        return -1;
+    }
+    jbyte *byte_data = env->GetByteArrayElements(byteArray_in, NULL);
+    ClassA *classA = (ClassA *) byte_data;
+    dump_ClassA_Info(classA);
+    setClassA_Info(classA);
+    dump_ClassA_Info(classA);
+    env->ReleaseByteArrayElements(byteArray_in, byte_data, 0);
+    return 0;
 }

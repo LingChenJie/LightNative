@@ -132,6 +132,15 @@
             android:text="javaBeanToStruct"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/getClassA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="getClassA"
+            android:textAllCaps="false" />
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </ScrollView>

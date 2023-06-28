@@ -155,6 +155,8 @@ static int registerOperateTransfer(JNIEnv *env) {
                             (void *) getJavaBean},
                     {"transferJavaBean", "(Lcom/android/lightnative/bean/JavaBean;)V",
                             (void *) transferJavaBean},
+                    {"getClassA",        "([B)I",
+                            (void *) getClassA},
             };
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }

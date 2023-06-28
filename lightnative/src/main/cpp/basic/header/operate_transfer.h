@@ -44,6 +44,13 @@ typedef struct {
     jfieldID innerClass;
 } JavaBean_t;
 
+// Must be byte aligned
+typedef struct {
+    unsigned char mByteArray[4];
+    short mShort;
+    unsigned char mByte;
+} ClassA;
+
 void register_class(JNIEnv *env);
 
 jobject getJavaBean(
@@ -54,6 +61,11 @@ void transferJavaBean(
         JNIEnv *env,
         jobject /* this */,
         jobject javaBean_in);
+
+jint getClassA(
+        JNIEnv *env,
+        jobject /* this */,
+        jbyteArray byteArray_in);
 
 #ifdef __cplusplus
 }

@@ -1,5 +1,6 @@
 package com.android.lightnative;
 
+import com.android.lightnative.bean.ClassA;
 import com.android.lightnative.bean.JavaBean;
 
 /**
@@ -13,5 +14,7 @@ public class OperateTransfer {
 
     // 将Java对象转换成C/C++结构体
     public native void transferJavaBean(JavaBean bean);
+
+    public native int getClassA(byte[] bytes);
 
 }

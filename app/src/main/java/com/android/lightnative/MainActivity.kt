@@ -2,8 +2,10 @@ package com.android.lightnative
 
 import android.os.Build
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.lightnative.bean.ClassA
 import com.android.lightnative.bean.JavaBean
 import com.android.lightnative.bean.Student
 import com.android.lightnative.databinding.ActivityMainBinding
@@ -99,6 +101,14 @@ class MainActivity : AppCompatActivity() {
             val javaBean = JavaBean()
             OperateTransfer().transferJavaBean(javaBean)
         }
+        val block: (Button) -> Unit = {
+            val classA = ClassA();
+            val bytes = classA.serialToBuffer()
+            OperateTransfer().getClassA(bytes)
+            classA.serialFromBuffer(bytes)
+            LogUtil.d(TAG, classA.toString())
+        }
+        binding.getClassA.click(block)
     }
 
     private fun toast(str: String) {
