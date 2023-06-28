@@ -6,6 +6,7 @@
 #include <android/log.h>
 #include "header/operate_transfer.h"
 #include "../utils/header/common_utils.h"
+#include "../utils/header/log_utils.h"
 
 #define TAG "TAG_OPERATE_TRANSFER"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -15,14 +16,14 @@ static JavaBean_t javaBean_t;
 static InnerClass_t innerClass_t;
 
 static int dump_ClassA_Info(ClassA *classA) {
-    LOGE(TAG, "--------------dump_ClassA_Info start------------------\n");
+    LOGD("--------------dump_ClassA_Info start------------------\n");
     int length = ARRAY_LEN(classA->mByteArray);
     for (int i = 0; i < length; ++i) {
-        LOGE(TAG, "mByteArray[%d]: %d\n", i, classA->mByteArray[i]);
+        LOGD("mByteArray[%d]: %d\n", i, classA->mByteArray[i]);
     }
-    LOGE(TAG, "mShort: %d\n", classA->mShort);
-    LOGE(TAG, "mByte: %d\n", classA->mByte);
-    LOGE(TAG, "--------------dump_ClassA_Info end------------------\n");
+    LOGD("mShort: %d\n", classA->mShort);
+    LOGD("mByte: %d\n", classA->mByte);
+    LOGD("--------------dump_ClassA_Info end------------------\n");
     return 0;
 }
 

@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include "header/operate_thread.h"
 #include "../utils/header/common_utils.h"
+#include "../utils/header/env_utils.h"
 
 #define TAG "TAG_OPERATE_THREAD"
 #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR,TAG,__VA_ARGS__)
@@ -20,14 +21,16 @@ static int count = 0;
 static void *thread_exec(void *arg) {
     LOGE(TAG, "thread_exec\n");
     LOGE(TAG, "The pthread id: %d\n", pthread_self());
-    JNIEnv *env;
-    g_JavaVM->AttachCurrentThread(&env, NULL);
+//    JNIEnv *env;
+//    g_JavaVM->AttachCurrentThread(&env, NULL);
+    JNIEnv *env = GetAttachEnv();
     for (int i = 0; i < 5; i++) {
         usleep(20);
         // 回调Java层函数
         env->CallVoidMethod(g_object, methodID_callback, count++);
     }
-    g_JavaVM->DetachCurrentThread();
+//    g_JavaVM->DetachCurrentThread();
+    DetachEnv();
     LOGE(TAG, "thread stoped\n");
     return ((void *) 0);
 }

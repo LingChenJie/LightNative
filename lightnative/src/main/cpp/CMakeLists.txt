@@ -23,6 +23,8 @@ add_library( # Sets the name of the library.
         # Provides a relative path to your source file(s).
         light_native.cpp
         utils/common_utils.cpp
+        utils/env_utils.cpp
+        utils/log_utils.cpp
         utils/exception_utils.cpp
         basic/operate_string.cpp
         basic/operate_array.cpp

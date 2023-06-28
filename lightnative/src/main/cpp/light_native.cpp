@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include "utils/header/env_utils.h"
 #include "basic/header/operate_string.h"
 #include "basic/header/operate_array.h"
 #include "basic/header/operate_field.h"
@@ -161,10 +162,13 @@ static int registerOperateTransfer(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
+JavaVM *JniData::vm = nullptr;
+
 // 动态注册
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGE(TAG, "JNI_OnLoad\n");
+    JniData::vm = vm;
     JNIEnv *env = NULL;
     // 获取JNIEnv
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
