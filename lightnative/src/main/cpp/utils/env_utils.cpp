@@ -6,13 +6,15 @@
 #include "header/env_utils.h"
 #include "header/log_utils.h"
 
+JavaVM *JniData::vm = nullptr;
+
 /**
 * 依据JavaVM获取JNIEnv对象
 * @return
 */
 JNIEnv *GetAttachEnv() {
     if (JniData::vm == NULL) {
-        LOGE("JavaVM is NULL\n");
+        LOGE("JniData::vm is NULL, please set the value in JNI_OnLoad\n");
         return NULL;
     }
     JNIEnv *env = NULL;

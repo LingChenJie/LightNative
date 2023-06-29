@@ -162,8 +162,6 @@ static int registerOperateTransfer(JNIEnv *env) {
     return registerNativeMethods(env, className, methods, sizeof(methods) / sizeof(methods[0]));
 }
 
-JavaVM *JniData::vm = nullptr;
-
 // 动态注册
 JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {

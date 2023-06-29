@@ -15,8 +15,6 @@ public:
     static JavaVM *vm;
 };
 
-void setJavaVM(JavaVM *vm);
-
 JNIEnv *GetAttachEnv();
 
 jint DetachEnv();
