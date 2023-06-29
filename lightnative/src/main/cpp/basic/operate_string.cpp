@@ -23,12 +23,12 @@ jstring helloJni(
     string_length = env->GetStringUTFLength(string);
     LOGE(TAG, "The String GetStringUTFLength: %d\n", string_length);
 
-    char const *c_str = NULL;
+    char const *c_str = nullptr;
     jboolean isCopy;
     c_str = env->GetStringUTFChars(string, &isCopy);// 从jstring指针中获取数据
     LOGE(TAG, "isCopy:%d\n", isCopy);
-    if (c_str == NULL) {
-        return NULL;
+    if (c_str == nullptr) {
+        return nullptr;
     }
     LOGE(TAG, "The String from Java: %s\n", c_str);
     env->ReleaseStringUTFChars(string, c_str);

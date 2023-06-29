@@ -20,9 +20,9 @@ static int count = 0;
 
 static void *thread_exec(void *arg) {
     LOGE(TAG, "thread_exec\n");
-    LOGE(TAG, "The pthread id: %d\n", pthread_self());
+    LOGE(TAG, "The pthread id: %ld\n", pthread_self());
 //    JNIEnv *env;
-//    g_JavaVM->AttachCurrentThread(&env, NULL);
+//    g_JavaVM->AttachCurrentThread(&env, nullptr);
     JNIEnv *env = GetAttachEnv();
     for (int i = 0; i < 5; i++) {
         usleep(20);
@@ -47,7 +47,7 @@ void threadWork(
     // 通过pthread库创建线程
     LOGE(TAG, "create native thread\n");
     pthread_t id;
-    if (pthread_create(&id, NULL, thread_exec, NULL) != 0) {
+    if (pthread_create(&id, nullptr, thread_exec, nullptr) != 0) {
         LOGE(TAG, "pthread_create fail\n");
         return;
     }

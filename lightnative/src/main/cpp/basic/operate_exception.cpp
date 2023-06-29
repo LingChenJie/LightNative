@@ -17,7 +17,7 @@ void throwException(
     jthrowable throwable;
     jclass class_object = env->GetObjectClass(object);
     jmethodID methodID_callback = env->GetMethodID(class_object, "callback", "()V");
-    if (methodID_callback == NULL) {
+    if (methodID_callback == nullptr) {
         LOGE(TAG, "GetMethodID callback failed\n");
         return;
     }
@@ -40,7 +40,7 @@ void throwException(
         // 创建一个异常返回给Java
         jclass exception_new;
         exception_new = env->FindClass("java/lang/IllegalArgumentException");
-        if (exception_new == NULL) {
+        if (exception_new == nullptr) {
             LOGE(TAG, "FindClass failed\n");
             return;
         }
@@ -58,7 +58,7 @@ void throwException2(
         jobject object) {
     jclass class_object = env->GetObjectClass(object);
     jmethodID methodID_callback = env->GetMethodID(class_object, "callback", "()V");
-    if (methodID_callback == NULL) {
+    if (methodID_callback == nullptr) {
         LOGE(TAG, "GetMethodID callback failed\n");
         return;
     }

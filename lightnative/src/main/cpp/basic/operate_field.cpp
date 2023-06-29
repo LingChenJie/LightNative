@@ -20,17 +20,17 @@ void accessFiled(
 
     // --------------------------获取Student类的实例变量并进行修改------------------------------
     class_student = env->GetObjectClass(student_in);
-    if (class_student == NULL) {
+    if (class_student == nullptr) {
         LOGE(TAG, "GetObjectClass failed\n");
         return;
     }
     fieldID_age = env->GetFieldID(class_student, "age", "I");
-    if (fieldID_age == NULL) {
+    if (fieldID_age == nullptr) {
         LOGE(TAG, "GetFieldID age failed\n");
         return;
     }
     fieldID_name = env->GetFieldID(class_student, "name", "Ljava/lang/String;");
-    if (fieldID_name == NULL) {
+    if (fieldID_name == nullptr) {
         LOGE(TAG, "GetFieldID name failed\n");
         return;
     }
@@ -59,19 +59,19 @@ void accessStaticFiled(
     jfieldID fieldID_staticString;
 
     class_student = env->FindClass("com/android/lightnative/bean/Student");
-    if (class_student == NULL) {
+    if (class_student == nullptr) {
         LOGE(TAG, "FindClass failed\n");
         return;
     }
 
     fieldID_staticId = env->GetStaticFieldID(class_student, "staticId", "I");
-    if (fieldID_staticId == NULL) {
+    if (fieldID_staticId == nullptr) {
         LOGE(TAG, "GetStaticFieldID fieldID_staticId failed\n");
         return;
     }
     fieldID_staticString = env->GetStaticFieldID(class_student, "staticString",
                                                  "Ljava/lang/String;");
-    if (fieldID_staticString == NULL) {
+    if (fieldID_staticString == nullptr) {
         LOGE(TAG, "GetStaticFieldID fieldID_staticString failed\n");
         return;
     }

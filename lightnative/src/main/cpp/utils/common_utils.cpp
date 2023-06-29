@@ -31,17 +31,17 @@ jstring charToJstring(JNIEnv *env, const char *str) {
  * @return
  */
 char *jstringToChar(JNIEnv *env, jstring jstr) {
-    if (env->ExceptionCheck() == JNI_TRUE || jstr == NULL) {
+    if (env->ExceptionCheck() == JNI_TRUE || jstr == nullptr) {
         env->ExceptionDescribe();
         env->ExceptionClear();
         LOGE(TAG, "jstringToChar 函数转换时,传入的参数str为空");
-        return NULL;
+        return nullptr;
     }
-    jbyteArray byteArray = 0;
+    jbyteArray byteArray = nullptr;
     jthrowable exc;
-    char *result = 0;
+    char *result = nullptr;
     if (env->EnsureLocalCapacity(2) < 0) {
-        return 0;/* out of memory error */
+        return nullptr;/* out of memory error */
     }
     jclass class_string = env->FindClass("java/lang/String");
     jmethodID methodID_string_getBytes = env->GetMethodID(class_string, "getBytes", "()[B");
@@ -50,10 +50,10 @@ char *jstringToChar(JNIEnv *env, jstring jstr) {
     if (!exc) {
         jint length = env->GetArrayLength(byteArray);
         result = (char *) malloc(length + 1);
-        if (result == 0) {
+        if (result == nullptr) {
             //JNU_ThrowByName( "java/lang/OutOfMemoryError", 	0);
             env->DeleteGlobalRef(byteArray);
-            return 0;
+            return nullptr;
         }
         env->GetByteArrayRegion(byteArray, 0, length, (jbyte *) result);
         result[length] = 0;/* NULL-terminate */
@@ -73,7 +73,7 @@ char *jstringToChar(JNIEnv *env, jstring jstr) {
  */
 int findClass(JNIEnv *env, const char *className, jclass *classOut) {
     jclass clazz = env->FindClass(className);
-    if (clazz == NULL) {
+    if (clazz == nullptr) {
         LOGE(TAG, "FindClass failed for class %s\n", className);
         return -1;
     }
@@ -92,7 +92,7 @@ int findClass(JNIEnv *env, const char *className, jclass *classOut) {
  */
 int getFiledID(JNIEnv *env, jclass clazz, const char *name, const char *sig, jfieldID *filedIdOut) {
     jfieldID fieldID = env->GetFieldID(clazz, name, sig);
-    if (fieldID == NULL) {
+    if (fieldID == nullptr) {
         LOGE(TAG, "GetFieldID failed for name: %s, sig: %s", name, sig);
         return -1;
     }

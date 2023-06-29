@@ -38,7 +38,7 @@ static int registerNativeMethods(JNIEnv *env, const char *className, JNINativeMe
     jclass clazz;
     // 找到申明native的类
     clazz = env->FindClass(className);
-    if (clazz == NULL) {
+    if (clazz == nullptr) {
         return JNI_FALSE;
     }
     // 注册函数
@@ -167,7 +167,7 @@ JNIEXPORT jint JNICALL
 JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGE(TAG, "JNI_OnLoad\n");
     JniData::vm = vm;
-    JNIEnv *env = NULL;
+    JNIEnv *env = nullptr;
     // 获取JNIEnv
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {
         return -1;

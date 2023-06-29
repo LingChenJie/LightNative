@@ -29,7 +29,7 @@ int checkException(JNIEnv *env) {
 void throwExceptionByName(JNIEnv *env, const char *exception_name, const char *msg) {
     // 查找异常类
     jclass class_exception = env->FindClass(exception_name);
-    if (class_exception != NULL) {
+    if (class_exception != nullptr) {
         // 抛出指定名称的异常
         env->ThrowNew(class_exception, msg);
     }

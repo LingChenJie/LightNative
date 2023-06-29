@@ -97,9 +97,9 @@ void register_class(JNIEnv *env) {
 }
 
 static jobject javaBean_cToJava(JNIEnv *env, JavaBean *javaBean) {
-    if (javaBean == NULL) {
-        LOGE(TAG, "javaBean is NULL\n");
-        return NULL;
+    if (javaBean == nullptr) {
+        LOGE(TAG, "javaBean is nullptr\n");
+        return nullptr;
     }
     // 创建InnerClass
     jobject object_innerClass = env->NewObject(innerClass_t.clazz, innerClass_t.constructor);
@@ -128,7 +128,7 @@ static jobject javaBean_cToJava(JNIEnv *env, JavaBean *javaBean) {
     // doubleDimenArray
     length = ARRAY_LEN(javaBean->doubleDimenArray);
     jclass clazz = env->FindClass("[I");// 一维数组的类
-    jobjectArray double_int_array = env->NewObjectArray(length, clazz, NULL);
+    jobjectArray double_int_array = env->NewObjectArray(length, clazz, nullptr);
     jintArray intArray;
     for (int i = 0; i < length; ++i) {
         jsize sub_length = ARRAY_LEN(javaBean->doubleDimenArray[i]);
@@ -153,14 +153,14 @@ static jobject javaBean_cToJava(JNIEnv *env, JavaBean *javaBean) {
 }
 
 static void javaBean_javaToC(JNIEnv *env, jobject object_javaBean, JavaBean *javaBean_out) {
-    if (object_javaBean == NULL) {
-        LOGE(TAG, "object_javaBean is NULL\n");
+    if (object_javaBean == nullptr) {
+        LOGE(TAG, "object_javaBean is nullptr\n");
         return;
     }
     // stringValue
     jstring string_stringValue = (jstring) env->GetObjectField(object_javaBean,
                                                                javaBean_t.stringValue);
-    javaBean_out->stringValue = env->GetStringUTFChars(string_stringValue, NULL);
+    javaBean_out->stringValue = env->GetStringUTFChars(string_stringValue, nullptr);
     // boolValue
     javaBean_out->boolValue = env->GetBooleanField(object_javaBean, javaBean_t.boolValue);
     // charValue
@@ -171,7 +171,7 @@ static void javaBean_javaToC(JNIEnv *env, jobject object_javaBean, JavaBean *jav
     javaBean_out->intValue = env->GetIntField(object_javaBean, javaBean_t.intValue);
     // byteArray
     jbyteArray byteArray = (jbyteArray) env->GetObjectField(object_javaBean, javaBean_t.byteArray);
-    jbyte *byte_data = env->GetByteArrayElements(byteArray, NULL);
+    jbyte *byte_data = env->GetByteArrayElements(byteArray, nullptr);
     jsize length = env->GetArrayLength(byteArray);
     memcpy(javaBean_out->byteArray, byte_data, sizeof(jbyte) * length);
     // doubleDimenArray
@@ -188,7 +188,7 @@ static void javaBean_javaToC(JNIEnv *env, jobject object_javaBean, JavaBean *jav
     // innerClass
     jobject object_innerClass = env->GetObjectField(object_javaBean, javaBean_t.innerClass);
     jstring string_message = (jstring) env->GetObjectField(object_innerClass, innerClass_t.message);
-    javaBean_out->message = env->GetStringUTFChars(string_message, NULL);
+    javaBean_out->message = env->GetStringUTFChars(string_message, nullptr);
 
     // 删除局部引用
     env->DeleteLocalRef(string_stringValue);
@@ -242,10 +242,10 @@ jint getClassA(
     } else {
         LOGE(TAG, "Big-endian\n");
     }
-    if (byteArray_in == NULL) {
+    if (byteArray_in == nullptr) {
         return -1;
     }
-    jbyte *byte_data = env->GetByteArrayElements(byteArray_in, NULL);
+    jbyte *byte_data = env->GetByteArrayElements(byteArray_in, nullptr);
     ClassA *classA = (ClassA *) byte_data;
     dump_ClassA_Info(classA);
     setClassA_Info(classA);

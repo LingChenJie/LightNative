@@ -19,9 +19,9 @@ jintArray operateIntArray(
     jint *pJint;
     // 操作方式1
     // 如同 getUTFString 一样，会申请 native 内存
-    pJint = env->GetIntArrayElements(inIntArray, NULL);
-    if (pJint == NULL) {
-        return NULL;
+    pJint = env->GetIntArrayElements(inIntArray, nullptr);
+    if (pJint == nullptr) {
+        return nullptr;
     }
     // 得到数组的长度
     const int length = env->GetArrayLength(inIntArray);
@@ -72,7 +72,7 @@ jobjectArray operateStringArray(
     jclass class_string = env->FindClass("java/lang/String");
     jobjectArray outStringArray;
     const int out_length = 5;
-    outStringArray = env->NewObjectArray(out_length, class_string, NULL);
+    outStringArray = env->NewObjectArray(out_length, class_string, nullptr);
     char *char_out[] = {"Hello", "world", "JNI", "is", "run."};
 
     jstring temp_string;
@@ -120,7 +120,7 @@ jobjectArray operateStudentArray(
     // 将数据封装成对象然后再封装成数组
     jobject student_out;
     // 创建Student对象数组
-    jobjectArray studentArray_out = env->NewObjectArray(length_out, class_student, NULL);
+    jobjectArray studentArray_out = env->NewObjectArray(length_out, class_student, nullptr);
     for (int i = 0; i < length_out; ++i) {
         student_out = env->NewObject(class_student, methodID_student_init);
         env->SetIntField(student_out, fieldId_age, students_out[i].age);
@@ -145,7 +145,7 @@ jobjectArray operateTwoIntArray(
     for (int i = 0; i < row; ++i) {
         array = (jintArray) env->GetObjectArrayElement(objectArray_in, i);
         // 操作方式1，这种方式会申请native memory内存
-        jint *coldata = env->GetIntArrayElements((jintArray) array, NULL);
+        jint *coldata = env->GetIntArrayElements((jintArray) array, nullptr);
         for (int j = 0; j < col; ++j) {
             intDimArray_in[i][j] = coldata[j];// 取出JAVA类中int二维数组的数据,并赋值给JNI中的数组
         }
@@ -169,7 +169,7 @@ jobjectArray operateTwoIntArray(
     // 获取数组的class
     jclass class_int_array = env->FindClass("[I");// 一维数组的类
     // 新建object数组，里面是int[]
-    jobjectArray intDimArray_out = env->NewObjectArray(row_out, class_int_array, NULL);
+    jobjectArray intDimArray_out = env->NewObjectArray(row_out, class_int_array, nullptr);
 
     int temp_array[row_out][col_out] = {{0, 1},
                                         {2, 3}};

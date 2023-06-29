@@ -15,31 +15,31 @@ jobject callMethod(
         jobject /* this */) {
     // --------------------------创建Java实例对象并调用方法--------------------------
     jclass class_student = env->FindClass("com/android/lightnative/bean/Student");
-    if (class_student == NULL) {
+    if (class_student == nullptr) {
         LOGE("TAG", "FindClass failed\n");
-        return NULL;
+        return nullptr;
     }
     jmethodID methodID_student_init = env->GetMethodID(class_student, "<init>", "()V");
-    if (methodID_student_init == NULL) {
+    if (methodID_student_init == nullptr) {
         LOGE("TAG", "GetMethodID init failed\n");
-        return NULL;
+        return nullptr;
     }
     // 创建实例
     jobject object_student = env->NewObject(class_student, methodID_student_init);
-    if (object_student == NULL) {
+    if (object_student == nullptr) {
         LOGE("TAG", "NewObject failed\n");
-        return NULL;
+        return nullptr;
     }
     jmethodID methodID_student_setAge = env->GetMethodID(class_student, "setAge", "(I)V");
-    if (methodID_student_setAge == NULL) {
+    if (methodID_student_setAge == nullptr) {
         LOGE("TAG", "GetMethodID setAge failed\n");
-        return NULL;
+        return nullptr;
     }
     jmethodID methodID_student_setName = env->GetMethodID(class_student, "setName",
                                                           "(Ljava/lang/String;)V");
-    if (methodID_student_setName == NULL) {
+    if (methodID_student_setName == nullptr) {
         LOGE("TAG", "GetMethodID setName failed\n");
-        return NULL;
+        return nullptr;
     }
     // 调用方法
     jstring string_name = charToJstring(env, "wangwu");
@@ -58,13 +58,13 @@ void callStaticMethod(
         jobject /* this */) {
     // --------------------------创建Java实例对象并调用静态方法--------------------------
     jclass class_student = env->FindClass("com/android/lightnative/bean/Student");
-    if (class_student == NULL) {
+    if (class_student == nullptr) {
         LOGE("TAG", "FindClass failed\n");
         return;
     }
     jmethodID methodID_setStaticString = env->GetStaticMethodID(class_student, "setStaticString",
                                                                 "(Ljava/lang/String;)V");
-    if (methodID_setStaticString == NULL) {
+    if (methodID_setStaticString == nullptr) {
         LOGE("TAG", "GetStaticMethodID setStaticString failed\n");
         return;
     }
@@ -88,30 +88,30 @@ void callSuperMethod(
     jobject object_tesla;
 
     class_car = env->FindClass("com/android/lightnative/bean/Car");
-    if (class_car == NULL) {
+    if (class_car == nullptr) {
         LOGE(TAG, "FindClass Car failed\n");
         return;
     }
     class_tesla = env->FindClass("com/android/lightnative/bean/Tesla");
-    if (class_tesla == NULL) {
+    if (class_tesla == nullptr) {
         LOGE(TAG, "FindClass Tesla failed\n");
         return;
     }
     methodID_tesla_init = env->GetMethodID(class_tesla, "<init>", "(Ljava/lang/String;)V");
-    if (methodID_tesla_init == NULL) {
+    if (methodID_tesla_init == nullptr) {
         LOGE(TAG, "GetMethodID Tesla init failed\n");
         return;
     }
 
     jstring string_name = charToJstring(env, "ModelY");
-    if (string_name == NULL) {
+    if (string_name == nullptr) {
         LOGE(TAG, "charToJstring failed\n");
         return;
     }
 
     // 创建Tesla
     object_tesla = env->NewObject(class_tesla, methodID_tesla_init, string_name);
-    if (object_tesla == NULL) {
+    if (object_tesla == nullptr) {
         LOGE(TAG, "NewObject Tesla failed\n");
         return;
     }
@@ -124,12 +124,12 @@ void callSuperMethod(
 
     // 获取Car 的方法ID
     methodID_feather = env->GetMethodID(class_car, "feature", "()V");
-    if (methodID_feather == NULL) {
+    if (methodID_feather == nullptr) {
         LOGE(TAG, "GetMethodID feather failed\n");
         return;
     }
     methodID_getName = env->GetMethodID(class_car, "getName", "()Ljava/lang/String;");
-    if (methodID_getName == NULL) {
+    if (methodID_getName == nullptr) {
         LOGE(TAG, "GetMethodID getName failed\n");
         return;
     }
